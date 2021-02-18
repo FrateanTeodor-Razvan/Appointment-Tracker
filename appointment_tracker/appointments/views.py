@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .forms import RegisterForm, LoginForm
+from .models import Appointment
 
 
-# Create your views here.
 def home_page_view(request):
     context = {
         'appointment_entries': [
@@ -55,3 +57,61 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("home_page")
+
+
+class AppointmentTemplateView(TemplateView):
+    template_name = 'appointments/appointment_home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['status'] = 'template_view is working'
+        return context
+
+
+class AppointmentListView(ListView):
+    template_name = 'appointments/appointment_list.html'
+    model = Appointment
+    context_object_name = 'appointment_list'
+
+    def get_queryset(self):
+        qs = super(AppointmentListView, self).get_queryset()
+        return qs.order_by('appointment_id', 'appointment_date')
+
+    def get_context_data(self, **kwargs):
+        context = super(AppointmentListView, self).get_context_data(**kwargs)
+        context['status'] = 'list_view is working'
+        return context
+
+
+class AppointmentCreateView(CreateView):
+    template_name = 'appointments/appointment_create.html'
+    model = Appointment
+    fields = '__all__'
+    success_url = reverse_lazy('appointments:appointment_list')
+
+
+class AppointmentDetailView(DetailView):
+    template_name = 'appointments/appointment_detail.html'
+    model = Appointment
+    pk_url_kwarg = 'appointment_id'
+    context_object_name = 'appointment_detail'
+
+    def get_context_data(self, **kwargs):
+        context = super(AppointmentDetailView, self).get_context_data(**kwargs)
+        context['status'] = 'detail_view is working'
+        return context
+
+
+class AppointmentUpdateView(UpdateView):
+    template_name = 'appointments/appointment_update.html'
+    model = Appointment
+    fields = 'appointment_text'
+    success_url = reverse_lazy('appointments:appointment_list')
+    pk_url_kwarg = 'appointment_id'
+
+
+class AppointmentDeleteView(DeleteView):
+    template_name = 'appointments/appointment_delete.html'
+    model = Appointment
+    context_object_name = 'appointment'
+    success_url = reverse_lazy('appointments:appointment_list')

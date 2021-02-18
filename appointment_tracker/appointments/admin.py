@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Application, Reply
+from .models import Appointment, Reply
 
 
 # Register your models here.
-admin.site.register(Application)
+admin.site.register(Appointment)
 admin.site.register(Reply)

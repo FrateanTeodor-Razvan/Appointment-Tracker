@@ -1,0 +1,35 @@
+{% extends "appointments/base.html" %}
+
+{% block content %}
+        <h2>Appointment list_page</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>appointment id</th>
+                    <th>username</th>
+                    <th>concerned department</th>
+                    <th>appointment description</th>
+                    <th>appointment date</th>
+                    <th>detail</th>
+                    <th>update</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointment_list %}
+                    <tr>
+                        <td>{{ appointment.appointment_id }}</td>
+                        <td>{{ appointment.user_id }}</td>
+                        <td>{{ appointment.department_id }}</td>
+                        <td>{{ appointment.appointment_text }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td><a href="{% url 'appointments:appointment_detail' appointment.appointment_id %}">detail</a> </td>
+                        <td><a href="{% url 'appointments:appointment_update' appointment.appointment_id %}">update</a> </td>
+                        <td><a href="{% url 'appointments:appointment_delete' appointment.appointment_id %}">delete</a> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'products:product_create' %}">Create product</a>
+{% endblock %}
