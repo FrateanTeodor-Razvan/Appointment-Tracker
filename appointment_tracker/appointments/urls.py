@@ -1,14 +1,10 @@
-from django.conf.urls import url
 from django.urls import path
 from . import views
 
 
-app_name = 'appointments'
-
 urlpatterns = [
-    url(r'^register/$', views.user_register, name='user_register'),
-    path('', views.Home_PageView, name='home_page'),
-    path('<int:application_id>/', views.DetailView, name='detail'),
-    path('<int:application_id>/results/', views.ResultsView, name='results'),
-    path('<int:application_id>/vote/', views.vote, name='vote'),
+    path('', views.home_page_view, name='home_page'),
+    path('register/', views.register_view, name='register'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
 ]

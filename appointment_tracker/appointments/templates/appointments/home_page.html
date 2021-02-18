@@ -1,7 +1,5 @@
 {% extends "appointments/base.html" %}
 
-{% block title %}Appointment Tracker{% endblock %}
-
 {% block content %}
     {% if user.is_authenticated %}
         {{ user }}
@@ -10,4 +8,8 @@
         <a href="{% url 'register' %}"><button type="submit">Register</button></a>
         <a href="{% url 'login' %}"><button type="submit">Login</button></a>
     {% endif %}
+    {% for entry in appointment_entries %}
+        <h2>{{ entry.title }}</h2>
+        <p>{{ entry.body }}</p>
+    {% endfor %}
 {% endblock %}
