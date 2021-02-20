@@ -60,7 +60,7 @@ def logout_view(request):
 
 
 class AppointmentTemplateView(TemplateView):
-    template_name = 'appointments/appointment_home.html'
+    template_name = "appointments/appointment_home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -69,9 +69,10 @@ class AppointmentTemplateView(TemplateView):
 
 
 class AppointmentListView(ListView):
-    template_name = 'appointments/appointment_list.html'
+    template_name = "appointments/appointment_list.html"
     model = Appointment
     context_object_name = 'appointment_list'
+    success_url = reverse_lazy('appointments:appointment_list')
 
     def get_queryset(self):
         qs = super(AppointmentListView, self).get_queryset()
@@ -84,14 +85,14 @@ class AppointmentListView(ListView):
 
 
 class AppointmentCreateView(CreateView):
-    template_name = 'appointments/appointment_create.html'
+    template_name = "appointments/appointment_create.html"
     model = Appointment
     fields = '__all__'
     success_url = reverse_lazy('appointments:appointment_list')
 
 
 class AppointmentDetailView(DetailView):
-    template_name = 'appointments/appointment_detail.html'
+    template_name = "appointments/appointment_detail.html"
     model = Appointment
     pk_url_kwarg = 'appointment_id'
     context_object_name = 'appointment_detail'
@@ -103,7 +104,7 @@ class AppointmentDetailView(DetailView):
 
 
 class AppointmentUpdateView(UpdateView):
-    template_name = 'appointments/appointment_update.html'
+    template_name = "appointments/appointment_update.html"
     model = Appointment
     fields = 'appointment_text'
     success_url = reverse_lazy('appointments:appointment_list')
@@ -111,7 +112,7 @@ class AppointmentUpdateView(UpdateView):
 
 
 class AppointmentDeleteView(DeleteView):
-    template_name = 'appointments/appointment_delete.html'
+    template_name = "appointments/appointment_delete.html"
     model = Appointment
     context_object_name = 'appointment'
     success_url = reverse_lazy('appointments:appointment_list')
