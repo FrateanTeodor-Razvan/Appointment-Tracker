@@ -1,6 +1,6 @@
 import datetime
 from django.db import models
-# from django.utils import timezone
+from django.utils import timezone
 
 
 # Create your models here.
@@ -21,13 +21,13 @@ class Appointment(models.Model):
     user_id = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     department_id = models.ForeignKey(Department, on_delete=models.CASCADE)
     appointment_text = models.TextField()
-    appointment_date = models.DateTimeField(blank=True, null=True, default=datetime.date.today)
+    appointment_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return f'{self.appointment_id} - {self.appointment_text} - {self.appointment_date}'
 
-    # def was_published_recently(self):
-    #     return self.application_date >= timezone.now() - datetime.timedelta(days=1)
+    def was_published_recently(self):
+        return self.appointment_date >= timezone.now() - datetime.timedelta(days=1)
 
 
 class Reply(models.Model):
@@ -35,7 +35,10 @@ class Reply(models.Model):
     appointment_id = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
     reply_text = models.TextField()
-    reply_date = models.DateTimeField(blank=True, null=True, default=datetime.date.today)
+    reply_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return f'{self.reply_id} - {self.reply_text} - {self.reply_date}'
+
+    def was_published(self):
+        return self.reply_date >= timezone.now() - datetime.timedelta(days=1)

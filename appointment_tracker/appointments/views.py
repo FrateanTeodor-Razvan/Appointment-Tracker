@@ -76,7 +76,7 @@ class AppointmentListView(ListView):
 
     def get_queryset(self):
         qs = super(AppointmentListView, self).get_queryset()
-        return qs.order_by('appointment_id', 'appointment_date')
+        return qs.order_by('appointment_id')
 
     def get_context_data(self, **kwargs):
         context = super(AppointmentListView, self).get_context_data(**kwargs)

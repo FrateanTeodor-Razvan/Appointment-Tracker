@@ -17,13 +17,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for appointment in appointment_list %}
+                {% for app in appointment_list %}
                     <tr>
-                        <td>{{ appointment.appointment_id }}</td>
-                        <td>{{ appointment.user_id }}</td>
-                        <td>{{ appointment.department_id }}</td>
-                        <td>{{ appointment.appointment_text }}</td>
-                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ app.appointment_id }}</td>
+                        <td>{{ app.user_id }}</td>
+                        <td>{{ app.department_id }}</td>
+                        <td>{{ app.appointment_text }}</td>
+                        <td>{{ app.appointment_date }}</td>
                         <td><a href="{% url 'appointments:appointment_detail' %}">detail</a> </td>
                         <td><a href="{% url 'appointments:appointment_update' %}">update</a> </td>
                         <td><a href="{% url 'appointments:appointment_delete' %}">delete</a> </td>

@@ -4,8 +4,6 @@ from .views import AppointmentTemplateView, AppointmentListView, AppointmentDeta
     AppointmentUpdateView, AppointmentDeleteView
 
 
-# app_name = 'appointments'
-
 urlpatterns = [
     path('', views.home_page_view, name='home_page'),
     path('register/', views.register_view, name='register'),
