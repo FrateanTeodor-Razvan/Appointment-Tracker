@@ -1,5 +1,26 @@
 {% extends "appointments/base.html" %}
 
 {% block content %}
+        {% if user.is_authenticated %}
+                {{ user }}
+                <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>
+                {% else %}
+                <a href="{% url 'register' %}"><button type="submit">Register</button></a>
+                <a href="{% url 'login' %}"><button type="submit">Login</button></a>
+        {% endif %}
+
         <h2>Appointment create_page</h2>
+
+        <form action="" method="post">
+                {% csrf_token %}
+                <h4>{{ form.username.label }}: {{ form.user_id }}</h4>
+                <h4>{{ form.department_id.label }}: {{ form.department_id }}</h4>
+                <h4>{{ form.appointment_text.label }}: {{ form.appointment_text }}</h4>
+                <h4>{{ form.appointment_date.label }}: {{ form.appointment_date }}</h4>
+                {% for error in form.price.errors %}
+                    <strong>{{ error|escape }}</strong>
+                {% endfor %}
+                 <h2>{{ form.appointment.label }}: {{ form.appointment }}</h2>
+                <input type="submit" value="Create">
+        </form>
 {% endblock %}

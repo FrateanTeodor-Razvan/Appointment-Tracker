@@ -1,5 +1,20 @@
 {% extends "appointments/base.html" %}
 
 {% block content %}
+        {% if user.is_authenticated %}
+                {{ user }}
+                <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>
+        {% else %}
+                <a href="{% url 'register' %}"><button type="submit">Register</button></a>
+                <a href="{% url 'login' %}"><button type="submit">Login</button></a>
+        {% endif %}
+
         <h2>Appointment detail_page</h2>
+
+        id: {{ appointment_detail.appointment_id }}<br/>
+        name: {{ appointment_detail.user_id }}<br/>
+        concerned department: {{ appointment_detail.department_id }}<br/>
+        description: {{ product_detail.appointment_text }}<br/>
+        date: {{ product_detail.appointment_date }}<br/>
+        status: {{ status }}<br/>
 {% endblock %}

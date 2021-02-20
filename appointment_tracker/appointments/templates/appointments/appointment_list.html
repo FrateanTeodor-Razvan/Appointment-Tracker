@@ -1,35 +1,43 @@
 {% extends "appointments/base.html" %}
 
 {% block content %}
-        <h2>Appointment list_page</h2>
+    {% if user.is_authenticated %}
+        {{ user }}
+        <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>
+    {% else %}
+        <a href="{% url 'register' %}"><button type="submit">Register</button></a>
+        <a href="{% url 'login' %}"><button type="submit">Login</button></a>
+    {% endif %}
 
-        <table>
-            <thead>
-                <tr>
-                    <th>appointment id</th>
-                    <th>username</th>
-                    <th>concerned department</th>
-                    <th>appointment description</th>
-                    <th>appointment date</th>
-                    <th>detail</th>
-                    <th>update</th>
-                    <th>delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for app in appointment_list %}
-                    <tr>
-                        <td>{{ app.appointment_id }}</td>
-                        <td>{{ app.user_id }}</td>
-                        <td>{{ app.department_id }}</td>
-                        <td>{{ app.appointment_text }}</td>
-                        <td>{{ app.appointment_date }}</td>
-                        <td><a href="{% url 'appointment_detail' %}">detail</a> </td>
-                        <td><a href="{% url 'appointment_update' %}">update</a> </td>
-                        <td><a href="{% url 'appointment_delete' %}">delete</a> </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{% url 'appointment_create' %}">Create appointment</a>
+    <h2>Appointment list_page</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>appointment id</th>
+                <th>username</th>
+                <th>concerned department</th>
+                <th>appointment description</th>
+                <th>appointment date</th>
+                <th>detail</th>
+                <th>update</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for app in appointment_list %}
+            <tr>
+                <td>{{ app.appointment_id }}</td>
+                <td>{{ app.user_id }}</td>
+                <td>{{ app.department_id }}</td>
+                <td>{{ app.appointment_text }}</td>
+                <td>{{ app.appointment_date }}</td>
+                <td><a href="{% url 'appointment_detail' %}">detail</a> </td>
+                <td><a href="{% url 'appointment_update' %}">update</a> </td>
+                <td><a href="{% url 'appointment_delete' %}">delete</a> </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'appointment_create' %}">Create appointment</a>
 {% endblock %}

@@ -1,6 +1,15 @@
 {% extends "appointments/base.html" %}
 
 {% block content %}
+        {% if user.is_authenticated %}
+                {{ user }}
+                <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>
+        {% else %}
+                <a href="{% url 'register' %}"><button type="submit">Register</button></a>
+                <a href="{% url 'login' %}"><button type="submit">Login</button></a>
+        {% endif %}
+
         <h2>Appointment home_page</h2>
+
         {{ appointment_list }}
 {% endblock %}

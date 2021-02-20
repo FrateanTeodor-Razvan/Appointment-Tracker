@@ -1,5 +1,19 @@
 {% extends "appointments/base.html" %}
 
 {% block content %}
+        {% if user.is_authenticated %}
+                {{ user }}
+                <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>
+        {% else %}
+                <a href="{% url 'register' %}"><button type="submit">Register</button></a>
+                <a href="{% url 'login' %}"><button type="submit">Login</button></a>
+        {% endif %}
+
         <h2>Appointment delete_page</h2>
+
+        <form action="" method="post">
+                {% csrf_token %}
+                <h4>Are you sure you want to delete the appointment: {{ appointment_text }}</h4>
+                <input type="submit" value="Delete">
+        </form>
 {% endblock %}
