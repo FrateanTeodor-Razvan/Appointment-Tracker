@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'appointments',  # adaugat de mine deoarece am uitat
+    'appointment_tracker',  # adaugat de mine pe 21 Februarie 2021
+    'appointments',  # adaugat de mine pe 08 Februarie 2021
+    'social_django',  # adaugat de mine pe 21 Februarie 2021
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTHENTICATION_BACKENDS = [
+    # 'social_core.backends.linkedin.LinkedinOAuth2',
+    # 'social_core.backends.instagram.InstagramOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+# [...]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home_page'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+# [...]
