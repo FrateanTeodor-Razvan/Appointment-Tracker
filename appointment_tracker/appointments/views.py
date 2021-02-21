@@ -8,17 +8,13 @@ from .models import Appointment
 
 
 def home_page_view(request):
+    search = request.GET.get('search')
+    if search:
+        appointment = Appointment.objects.filter(appointment_text__icontains=search)
+    else:
+        appointment = Appointment.objects.all()
     context = {
-        'appointment_entries': [
-            {
-                'title': 'A title',
-                'body': 'And a description.'
-            },
-            {
-                'title': 'A title',
-                'body': 'And a description.'
-            }
-        ]
+        'appointment': appointment
     }
     return render(request, "appointments/home_page.html", context)
 

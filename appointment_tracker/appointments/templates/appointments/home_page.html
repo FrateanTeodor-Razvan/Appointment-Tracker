@@ -9,9 +9,8 @@
         <a href="{% url 'login' %}"><button type="submit">Login</button></a>
     {% endif %}
 
-    {% for entry in appointment_entries %}
-        <h2>{{ entry.title }}</h2>
-        <p>{{ entry.body }}</p>
+    {% for entry in appointment %}
+        <p>{{ entry }}</p>
     {% endfor %}
 
     <a href="{% url 'appointment_create' %}">Create appointment</a>
