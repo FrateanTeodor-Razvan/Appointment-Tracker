@@ -11,10 +11,14 @@
 
         <h2>Appointment detail_page</h2>
 
-        id: {{ appointment_detail.appointment_id }}<br/>
-        name: {{ appointment_detail.user_id }}<br/>
-        concerned department: {{ appointment_detail.department_id }}<br/>
-        description: {{ product_detail.appointment_text }}<br/>
-        date: {{ product_detail.appointment_date }}<br/>
-        status: {{ status }}<br/>
+        <p>id: {{ appointment_detail.appointment_id }}</p>
+        <p>name: {{ appointment_detail.user_id }}</p>
+        <p>concerned department: {{ appointment_detail.department_id }}</p>
+        <p>description: {{ product_detail.appointment_text }}</p>
+        <p>date: {{ product_detail.appointment_date }}</p>
+
+        <br />
+
+        <a href="{% url 'appointment_update' %}">Update the appointment</a>
+        <a href="{% url 'appointment_delete' %}">Delete the appointment</a>
 {% endblock %}

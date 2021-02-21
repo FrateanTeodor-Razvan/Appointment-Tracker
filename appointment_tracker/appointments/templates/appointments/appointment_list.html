@@ -32,9 +32,9 @@
                 <td>{{ app.department_id }}</td>
                 <td>{{ app.appointment_text }}</td>
                 <td>{{ app.appointment_date }}</td>
-                <td><a href="{% url 'appointment_detail' %}">detail</a> </td>
-                <td><a href="{% url 'appointment_update' %}">update</a> </td>
-                <td><a href="{% url 'appointment_delete' %}">delete</a> </td>
+                <td><a href="{% url 'appointment_detail' app.appointment_id %}">detail</a> </td>
+                <td><a href="{% url 'appointment_update' app.appointment_id %}">update</a> </td>
+                <td><a href="{% url 'appointment_delete' app.appointment_id %}">delete</a> </td>
             </tr>
         {% endfor %}
         </tbody>

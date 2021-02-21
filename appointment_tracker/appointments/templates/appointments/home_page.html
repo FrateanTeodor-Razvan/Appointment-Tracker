@@ -8,8 +8,11 @@
         <a href="{% url 'register' %}"><button type="submit">Register</button></a>
         <a href="{% url 'login' %}"><button type="submit">Login</button></a>
     {% endif %}
+
     {% for entry in appointment_entries %}
         <h2>{{ entry.title }}</h2>
         <p>{{ entry.body }}</p>
     {% endfor %}
+
+    <a href="{% url 'appointment_create' %}">Create appointment</a>
 {% endblock %}

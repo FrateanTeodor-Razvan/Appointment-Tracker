@@ -8,12 +8,18 @@ class Department(models.Model):
     department_id = models.IntegerField(primary_key=True, unique=True, null=False)
     department_name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f'{self.department_id} - {self.department_name}'
+
 
 class Employee(models.Model):
     employee_id = models.IntegerField(primary_key=True, unique=True, null=False)
     employee_firstname = models.CharField(max_length=20)
     employee_lastname = models.CharField(max_length=20)
     department_id = models.ForeignKey(Department, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.employee_id} - {self.employee_firstname} - {self.employee_lastname} - {self.department_id}'
 
 
 class Appointment(models.Model):
