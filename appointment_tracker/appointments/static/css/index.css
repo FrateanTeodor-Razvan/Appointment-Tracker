@@ -30,3 +30,7 @@ img {
   color: white;
   text-decoration: none ;
 }
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}

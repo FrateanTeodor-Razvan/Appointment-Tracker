@@ -38,24 +38,24 @@ def register_view(request):
     return render(request=request, template_name="appointments/register.html", context={"register_form": form})
 
 
-# def login_view(request):
-#     form = LoginForm()
-#     if request.method == "POST":
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             print("Is valid")
-#             username = form.cleaned_data.get("username")
-#             password = form.cleaned_data.get("password")
-#             user = authenticate(request, username=username, password=password)
-#             if user is not None:
-#                 login(request, user)
-#             return redirect("home_page")
-#     return render(request=request, template_name="appointments/login.html", context={"login_form": form})
+def login_view(request):
+    form = LoginForm()
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            print("Is valid")
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+            return redirect("home_page")
+    return render(request=request, template_name="appointments/login.html", context={"login_form": form})
 #     # return render(request=request, template_name="appointments/login.html")
 
 
-def login_view(request):
-    return render(request, "appointments/login.html")
+# def login_view(request):
+#     return render(request, "appointments/login.html")
 
 
 # @login_required
