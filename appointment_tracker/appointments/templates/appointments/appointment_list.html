@@ -1,13 +1,13 @@
 {% extends "appointments/base.html" %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        {{ user }}
-        <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>
-    {% else %}
-        <a href="{% url 'register' %}"><button type="submit">Register</button></a>
-        <a href="{% url 'login' %}"><button type="submit">Login</button></a>
-    {% endif %}
+<!--    {% if user.is_authenticated %}-->
+<!--        {{ user }}-->
+<!--        <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>-->
+<!--    {% else %}-->
+<!--        <a href="{% url 'register' %}"><button type="submit">Register</button></a>-->
+<!--        <a href="{% url 'login' %}"><button type="submit">Login</button></a>-->
+<!--    {% endif %}-->
 
     <h2>Appointment list_page</h2>
 
@@ -25,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for app in appointment_list %}
+        {% for app in appointment %}
             <tr>
                 <td>{{ app.appointment_id }}</td>
                 <td>{{ app.user_id }}</td>

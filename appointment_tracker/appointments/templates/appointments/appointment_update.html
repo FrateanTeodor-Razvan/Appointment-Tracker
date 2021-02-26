@@ -1,31 +1,30 @@
 {% extends "appointments/base.html" %}
 
 {% block content %}
-        {% if user.is_authenticated %}
-                {{ user }}
-                <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>
-        {% else %}
-                <a href="{% url 'register' %}"><button type="submit">Register</button></a>
-                <a href="{% url 'login' %}"><button type="submit">Login</button></a>
-        {% endif %}
+<!--        {% if user.is_authenticated %}-->
+<!--                {{ user }}-->
+<!--                <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>-->
+<!--        {% else %}-->
+<!--                <a href="{% url 'register' %}"><button type="submit">Register</button></a>-->
+<!--                <a href="{% url 'login' %}"><button type="submit">Login</button></a>-->
+<!--        {% endif %}-->
 
         <h2>Appointment update_page</h2>
 
-        {% if form.errors %}
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <strong>{{ error|escape }}</strong>
-                    {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <strong>{{ error|escape }}</strong>
-                {% endfor %}
-        {% endif %}
+<!--        {% if form.errors %}-->
+<!--                {% for field in form %}-->
+<!--                    {% for error in field.errors %}-->
+<!--                        <strong>{{ error|escape }}</strong>-->
+<!--                    {% endfor %}-->
+<!--                {% endfor %}-->
+<!--                {% for error in form.non_field_errors %}-->
+<!--                    <strong>{{ error|escape }}</strong>-->
+<!--                {% endfor %}-->
+<!--        {% endif %}-->
 
         <form action="" method="post">
                 {% csrf_token %}
-                <h4>{{ form.department_id.label }}: {{ form.department_id }}</h4>
-                <h4>{{ form.appointment_text.label }}: {{ form.appointment_text }}</h4>
-                <input type="submit" value="Update">
+                {{ form.as_p }}
+                <input type="submit" value="Update" />
         </form>
 {% endblock %}

@@ -78,26 +78,26 @@ class AppointmentTemplate(TemplateView):
 
 
 class AppointmentList(ListView):
-    template_name = "appointments/appointment_list.html"
     model = Appointment
-    context_object_name = 'appointment_list'
+    template_name = "appointments/appointment_list.html"
+    context_object_name = 'appointment'
     # success_url = reverse_lazy('appointments:appointment_list')
 
-    def get_queryset(self):
-        qs = super(AppointmentList, self).get_queryset()
-        return qs.order_by('appointment_id')
-
-    def get_context_data(self, **kwargs):
-        context = super(AppointmentList, self).get_context_data(**kwargs)
-        context['status'] = 'list_view is working'
-        return context
+    # def get_queryset(self):
+    #     qs = super(AppointmentList, self).get_queryset()
+    #     return qs.order_by('appointment_id')
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super(AppointmentList, self).get_context_data(**kwargs)
+    #     context['status'] = 'list_view is working'
+    #     return context
 
 
 class AppointmentCreate(CreateView):
-    template_name = "appointments/appointment_create.html"
     model = Appointment
+    template_name = "appointments/appointment_create.html"
     fields = '__all__'
-    success_url = reverse_lazy('appointments:appointment_list')
+    success_url = reverse_lazy('appointment_list')
 
     # def form_valid(self, form):
     #     self.object = form.save(commit=False)
@@ -107,27 +107,31 @@ class AppointmentCreate(CreateView):
 
 
 class AppointmentDetail(DetailView):
-    template_name = "appointments/appointment_detail.html"
     model = Appointment
-    pk_url_kwarg = 'appointment_id'
-    context_object_name = 'appointment_detail'
+    template_name = "appointments/appointment_detail.html"
+    context_object_name = 'appointment'
 
-    def get_context_data(self, **kwargs):
-        context = super(AppointmentDetail, self).get_context_data(**kwargs)
-        context['status'] = 'detail_view is working'
-        return context
+    # def get_queryset(self):
+    #     qs = super(AppointmentDetail, self).get_queryset()
+    #     return qs.order_by('appointment_id')
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super(AppointmentDetail, self).get_context_data(**kwargs)
+    #     context['status'] = 'detail_view is working'
+    #     return context
 
 
 class AppointmentUpdate(UpdateView):
-    template_name = "appointments/appointment_update.html"
     model = Appointment
-    fields = ('department_id', 'appointment_text')
-    success_url = reverse_lazy('appointments:appointment_list')
-    pk_url_kwarg = 'appointment_id'
+    template_name = "appointments/appointment_update.html"
+    context_object_name = 'appointment'
+    # fields = ['department_id', 'appointment_text']
+    fields = '__all__'
+    success_url = reverse_lazy('appointment_list')
 
 
 class AppointmentDelete(DeleteView):
-    template_name = "appointments/appointment_delete.html"
     model = Appointment
+    template_name = "appointments/appointment_delete.html"
     context_object_name = 'appointment'
-    success_url = reverse_lazy('appointments:appointment_list')
+    success_url = reverse_lazy('appointment_list')

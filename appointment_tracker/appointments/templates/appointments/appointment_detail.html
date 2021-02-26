@@ -1,24 +1,24 @@
 {% extends "appointments/base.html" %}
 
 {% block content %}
-        {% if user.is_authenticated %}
-                {{ user }}
-                <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>
-        {% else %}
-                <a href="{% url 'register' %}"><button type="submit">Register</button></a>
-                <a href="{% url 'login' %}"><button type="submit">Login</button></a>
-        {% endif %}
+<!--        {% if user.is_authenticated %}-->
+<!--                {{ user }}-->
+<!--                <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>-->
+<!--        {% else %}-->
+<!--                <a href="{% url 'register' %}"><button type="submit">Register</button></a>-->
+<!--                <a href="{% url 'login' %}"><button type="submit">Login</button></a>-->
+<!--        {% endif %}-->
 
         <h2>Appointment detail_page</h2>
 
-        <p>id: {{ appointment_detail.appointment_id }}</p>
-        <p>name: {{ appointment_detail.user_id }}</p>
-        <p>concerned department: {{ appointment_detail.department_id }}</p>
-        <p>description: {{ product_detail.appointment_text }}</p>
-        <p>date: {{ product_detail.appointment_date }}</p>
+        <p>id: {{ appointment.appointment_id }}</p>
+        <p>name: {{ appointment.user_id }}</p>
+        <p>concerned department: {{ appointment.department_id }}</p>
+        <p>description: {{ appointment.appointment_text }}</p>
+        <p>date: {{ appointment.appointment_date }}</p>
 
         <br />
 
-        <a href="{% url 'appointment_update' %}">Update the appointment</a>
-        <a href="{% url 'appointment_delete' %}">Delete the appointment</a>
+        <a href="{% url 'appointment_update' appointment.appointment_id %}">Update the appointment</a>
+        <a href="{% url 'appointment_delete' appointment.appointment_id %}">Delete the appointment</a>
 {% endblock %}

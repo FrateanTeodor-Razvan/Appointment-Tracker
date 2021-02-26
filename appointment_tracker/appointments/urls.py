@@ -16,8 +16,8 @@ urlpatterns = [
     # path('social-auth/', include('social_django.urls', namespace="social")),
     path('', AppointmentTemplate.as_view(), name='appointment_home'),
     path('list/', AppointmentList.as_view(), name='appointment_list'),
-    path('detail/<int:appointment_id>/', AppointmentDetail.as_view(), name='appointment_detail'),
+    path('detail/<int:pk>/', AppointmentDetail.as_view(), name='appointment_detail'),
     path('create/', AppointmentCreate.as_view(), name='appointment_create'),
-    path('update/<int:appointment_id>/', AppointmentUpdate.as_view(), name='appointment_update'),
-    path('delete/<int:appointment_id>/', AppointmentDelete.as_view(), name='appointment_delete')
+    path('update/<int:pk>/', AppointmentUpdate.as_view(), name='appointment_update'),
+    path('delete/<int:pk>/', AppointmentDelete.as_view(), name='appointment_delete')
 ]
