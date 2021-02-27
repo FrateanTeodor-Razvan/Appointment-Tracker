@@ -32,8 +32,8 @@ class Appointment(models.Model):
     def __str__(self):
         return f'{self.appointment_id} - {self.appointment_text} - {self.appointment_date}'
 
-    def was_published_recently(self):
-        return self.appointment_date >= timezone.now() - datetime.timedelta(days=1)
+    # def was_published_recently(self):
+    #     return self.appointment_date >= timezone.now() - datetime.timedelta(days=1)
 
 
 class Reply(models.Model):
@@ -46,5 +46,5 @@ class Reply(models.Model):
     def __str__(self):
         return f'{self.reply_id} - {self.reply_text} - {self.reply_date}'
 
-    def was_published(self):
-        return self.reply_date >= timezone.now() - datetime.timedelta(days=1)
+    # def was_published(self):
+    #     return self.reply_date >= timezone.now() - datetime.timedelta(days=1)
