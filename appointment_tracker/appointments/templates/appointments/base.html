@@ -59,16 +59,14 @@
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
-            <p class="text-white">Hello {{ user.username }}</p>
+         <p class="text-white">Hello {{ user.username }}</p>
     </nav>
     <!--/.Navbar -->
-    <div class="container-fluid">
-        <div>
-            <h1 class="text-white bg-dark text-center">{% block second_title %}{% endblock %}</h1>
-            <div class="card p-3">
-                {% block content %}
-                {% endblock %}
-            </div>
+    <div class="card">
+        <div class="card bg-light mb-3" style="max-width: 150rem;">
+<!--            <h1 class="text-white bg-dark text-center">{% block second_title %}{% endblock %}</h1>-->
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
 

@@ -3,10 +3,30 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-sm-12 mb-3">
-            <h4 class="text-center"> Welcome {{ user.username }} </h4>
+    <div class="card-columns">
+        {% for entry in appointment %}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">{{ entry }}</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text"><small class="text-muted">{{ entry.appointment_date }}</small></p>
+                <ul class="nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'appointment_detail' entry.appointment_id %}">Detail</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'appointment_update' entry.appointment_id %}">Update</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'appointment_delete' entry.appointment_id %}">Delete</a>
+                  </li>
+                </ul>
+            </div>
         </div>
+        {% endfor %}
     </div>
 <!--    {% if user.is_authenticated %}-->
 <!--        {{ user }}-->
@@ -15,10 +35,7 @@
 <!--        <a href="{% url 'register' %}"><button type="submit">Register</button></a>-->
 <!--        <a href="{% url 'login' %}"><button type="submit">Login</button></a>-->
 <!--    {% endif %}-->
-
-    {% for entry in appointment %}
-        <p>{{ entry }}</p>
-    {% endfor %}
-
-    <a href="{% url 'appointment_create' %}">Create appointment</a>
+    <div class="card p-3 text-center">
+            <a href="{% url 'appointment_create' %}">Create appointment</a>
+    </div>
 {% endblock %}
