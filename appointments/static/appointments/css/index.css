@@ -34,3 +34,7 @@ img {
 .selector-for-some-widget {
   box-sizing: content-box;
 }
+
+body {
+  background: white url("images/background.jpg") no repeat;
+}

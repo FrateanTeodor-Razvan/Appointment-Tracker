@@ -27,7 +27,7 @@ class Appointment(models.Model):
     user_id = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     department_id = models.ForeignKey(Department, on_delete=models.CASCADE)
     appointment_text = models.TextField()
-    appointment_date = models.DateTimeField(blank=True, null=True)
+    appointment_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.appointment_id} - {self.appointment_text} - {self.appointment_date}'
