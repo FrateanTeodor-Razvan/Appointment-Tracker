@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from appointments import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -27,4 +29,4 @@ urlpatterns = [
     path('social_auth/', include('social_django.urls', namespace='social')),
     path('', views.home_page_view, name='home_page'),
     path('appointment/', include('appointments.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

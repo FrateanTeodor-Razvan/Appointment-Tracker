@@ -8,7 +8,7 @@ from .forms import RegisterForm, LoginForm
 from .models import Appointment
 
 
-@login_required
+# @login_required
 def home_page_view(request):
     search = request.GET.get('search')
     if search:

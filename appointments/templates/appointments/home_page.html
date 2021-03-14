@@ -1,0 +1,45 @@
+{% extends "appointments/base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+          <div class="col-md-8 mx-auto card-columns my-2 order-md-1">
+            {% for entry in appointment %}
+            <div class="card" style="width: 12rem;">
+<!--                <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">-->
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">{{ entry.appointment_text }}</p>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text"><small class="text-muted">{{ entry.appointment_date|date:"D d M Y" }} {{ entry.appointment_date|time:"H:i" }}</small></p>
+                    <ul class="nav">
+                      <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'appointment_detail' entry.appointment_id %}">Detail</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'appointment_update' entry.appointment_id %}">Update</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'appointment_delete' entry.appointment_id %}">Delete</a>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+<!--    {% if user.is_authenticated %}-->
+<!--        {{ user }}-->
+<!--        <a href="{% url 'logout' %}"><button type="submit">Logout</button></a>-->
+<!--    {% else %}-->
+<!--        <a href="{% url 'register' %}"><button type="submit">Register</button></a>-->
+<!--        <a href="{% url 'login' %}"><button type="submit">Login</button></a>-->
+<!--    {% endif %}-->
+        <div class="card p-3 text-center">
+                <a href="{% url 'appointment_create' %}">Create appointment</a>
+        </div>
+        </div>
+    </div>
+{% endblock %}
